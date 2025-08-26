@@ -1,0 +1,25 @@
+{
+  "name": "compressconvertandcropimages",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\"",
+    "dev:api": "npm --prefix backend run dev",
+    "dev:ui": "npm --prefix frontend run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sparsh017-byte/CompressConvertAndCropImages.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sparsh017-byte/CompressConvertAndCropImages/issues"
+  },
+  "homepage": "https://github.com/Sparsh017-byte/CompressConvertAndCropImages#readme",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  }
+}

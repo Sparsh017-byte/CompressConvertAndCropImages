@@ -1,0 +1,133 @@
+import { useCallback, useState } from 'react';
+import axios from 'axios';
+
+export default function Uploader({ actions }) {
+  const [file, setFile] = useState(null);
+  const [preview, setPreview] = useState(null);
+  const [output, setOutput] = useState(null);
+  const [error, setError] = useState('');
+  const [uploading, setUploading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [outputFilename, setOutputFilename] = useState('output.png');
+
+  // --- File picking ---
+  const pickFile = useCallback((f) => {
+    if (!f) return;
+    setError('');
+    const okTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/avif', 'image/gif'];
+    if (!okTypes.includes(f.type)) {
+      setError('Unsupported file type. Use JPEG/PNG/WEBP/AVIF/GIF.');
+      return;
+    }
+    if (f.size > 10 * 1024 * 1024) {
+      setError('File too large. Max 10MB.');
+      return;
+    }
+    setFile(f);
+    setPreview(URL.createObjectURL(f));
+    setOutput(null);
+    setOutputFilename('output.png');
+  }, []);
+
+  const onChange = (e) => pickFile(e.target.files?.[0]);
+  const onDrop = (e) => {
+    e.preventDefault();
+    pickFile(e.dataTransfer.files?.[0]);
+  };
+  const onDragOver = (e) => e.preventDefault();
+
+  // --- Reset everything ---
+  const reset = () => {
+    if (preview) URL.revokeObjectURL(preview);
+    if (output) URL.revokeObjectURL(output);
+    setFile(null);
+    setPreview(null);
+    setOutput(null);
+    setError('');
+    setUploading(false);
+    setProgress(0);
+    setOutputFilename('output.png');
+  };
+
+  // --- Transform / Upload ---
+  async function transform(endpoint, body = {}, filename = 'output.png') {
+    if (!file) return alert('Select a file first!');
+    setUploading(true);
+    setProgress(0);
+    setError('');
+    try {
+      const form = new FormData();
+      form.append('image', file);
+      Object.entries(body).forEach(([k, v]) => form.append(k, v));
+
+      const res = await axios.post(`/api/${endpoint}`, form, {
+        responseType: 'blob',
+        onUploadProgress: (p) => {
+          if (p.total) setProgress(Math.round((p.loaded / p.total) * 100));
+        },
+      });
+
+      const url = URL.createObjectURL(res.data);
+      setOutput(url);
+      setOutputFilename(filename);
+    } catch (e) {
+      setError(e?.response?.data?.error || 'Transform failed');
+    } finally {
+      setUploading(false);
+    }
+  }
+
+  return (
+    <div className="space-y-4">
+      {/* Dropzone */}
+      <div
+        onDrop={onDrop}
+        onDragOver={onDragOver}
+        className="bg-white border-2 border-dashed rounded-2xl p-6 text-center"
+      >
+        <p className="mb-2 font-medium">Drag & drop an image here</p>
+        <p className="text-sm text-gray-500 mb-4">or</p>
+        <label className="btn cursor-pointer inline-block">
+          Choose file
+          <input type="file" accept="image/*" className="hidden" onChange={onChange} />
+        </label>
+      </div>
+
+      {/* Preview */}
+      {file && preview && (
+        <div className="card p-4 border rounded-xl space-y-2">
+          <div className="flex justify-between items-center">
+            <div>
+              {file.name} • {(file.size / 1024).toFixed(1)} KB • {file.type}
+            </div>
+            <button className="btn cursor-pointer" onClick={reset}>
+              Reset
+            </button>
+          </div>
+          <img src={preview} alt="preview" className="max-h-64 object-contain w-full border rounded" />
+
+          {/* Actions passed from parent (Convert / Compress / Crop etc.) */}
+          <div className="flex gap-2 mt-3 flex-wrap">
+            {actions({ transform, uploading, file, preview })}
+          </div>
+
+          {uploading && <div className="text-sm text-gray-500">Uploading… {progress}%</div>}
+
+          {/* Output */}
+          {output && (
+            <div className="mt-3">
+              <h2 className="font-medium">Output</h2>
+              <img src={output} alt="output" className="max-h-64 w-full object-contain border rounded" />
+              <a href={output} download={outputFilename} className="btn mt-2 inline-block">
+                Download
+              </a>
+            </div>
+          )}
+
+          {/* Error */}
+          {error && <div className="text-red-600 mt-2">{error}</div>}
+        </div>
+      )}
+    </div>
+  );
+}
