@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import axios from 'axios';
-
+import API from '../api.js';
 export default function Uploader({ actions }) {
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
@@ -60,7 +60,7 @@ export default function Uploader({ actions }) {
       form.append('image', file);
       Object.entries(body).forEach(([k, v]) => form.append(k, v));
 
-      const res = await axios.post(`/api/${endpoint}`, form, {
+      const res = await API.post(`/api/${endpoint}`, form, {
         responseType: 'blob',
         onUploadProgress: (p) => {
           if (p.total) setProgress(Math.round((p.loaded / p.total) * 100));

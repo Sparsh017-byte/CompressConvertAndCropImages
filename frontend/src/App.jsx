@@ -6,8 +6,8 @@ import Compress from './components/Compress.jsx'
 import Convert from './components/Convert.jsx'
 import Home from './components/Home.jsx'
 import Crop from './components/Crop.jsx';
-import Footer from './components/Footer.jsx'
-
+import Footer from './components/Footer.jsx';
+import API from './api.js'
 
 function Nav() {
   const tabs = [
@@ -37,7 +37,7 @@ function Nav() {
 function HealthPill() {
   const [status, setStatus] = useState('checking...')
   useEffect(() => {
-    axios.get('/api/health')
+    API.get('/api/health')
       .then(res => setStatus(res.data.ok ? 'API OK' : 'API Error'))
       .catch(() => setStatus('API Error'))
   }, [])
@@ -50,7 +50,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Nav />
-      <main className="max-w-4xl mx-auto px-4 py-6 space-y-4 flex-grow">
+      <main className="w-[90vw] mx-auto px-4 py-6 space-y-4">
         <HealthPill />
         <Routes>
           <Route path="/" element={<Navigate to="/home" replace />} />
@@ -62,7 +62,9 @@ export default function App() {
         </Routes>
       </main>
 
-      {/* ✅ Footer rendered outside <main> */}
+      {/* ✅ Footer rendered outside <main> 
+      
+      */}
       {location.pathname === "/home" && <Footer />}
     </div>
   );
