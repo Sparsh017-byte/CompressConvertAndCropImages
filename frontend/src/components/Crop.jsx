@@ -69,8 +69,14 @@ export default function CropPage() {
                     ref={setImgRef}
                     alt="Crop me"
                     src={preview}
-                    style={{ maxHeight: "500px", objectFit: "contain" }}
                     onLoad={onImageLoad}
+                    style={{
+                      maxHeight: "500px",
+                      maxWidth: "100%",
+                      objectFit: "contain",
+                      display: "block",
+                      margin: "0 auto"   // centers horizontally
+                    }}
                   />
                 </ReactCrop>
 
