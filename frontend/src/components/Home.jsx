@@ -1,5 +1,6 @@
 // src/pages/Home.jsx
 import { Link } from "react-router-dom";
+import Ads from './components/Ads';
 
 export default function Home() {
   return (
@@ -36,7 +37,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-
+        <Ads adSlot="YOUR_AD_SLOT_ID" test={true} />
         {/* Convert Section */}
         <div className="flex flex-col-reverse md:grid md:grid-cols-2 gap-8 items-center">
           <div>
