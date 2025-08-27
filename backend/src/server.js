@@ -18,7 +18,9 @@ if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
 // ---- Middleware
 const allowedOrigins = [
   'http://localhost:5173', // local dev
-  'https://compress-convert-and-crop-images.vercel.app' // deployed frontend
+  'https://compress-convert-and-crop-images.vercel.app', // deployed frontend
+  'https://www.cccimages.online', // your new custom domain
+  'https://cccimages.online' // optional: if root domain is also used
 ];
 
 app.use(cors({
