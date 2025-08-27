@@ -142,7 +142,7 @@ export default function CropPage() {
         <ul className="list-disc list-inside text-blue-600 underline">
           <li>
             <a 
-              href="https://helpx.adobe.com/photoshop/using/cropping-straightening-photos.html" 
+              href="https://www.adobe.com/in/learn/photoshop/web/crop-image?learnIn=1&locale=en-IN" 
               target="_blank" rel="noopener noreferrer"
             >
               Adobe Photoshop: Cropping and Straightening
@@ -150,7 +150,7 @@ export default function CropPage() {
           </li>
           <li>
             <a 
-              href="https://www.canva.com/learn/photo-cropping/" 
+              href="https://www.canva.com/en_in/help/resize-and-crop/" 
               target="_blank" rel="noopener noreferrer"
             >
               Canva Guide: Photo Cropping Tips
