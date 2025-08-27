@@ -19,7 +19,7 @@ export default function Home() {
           </h1>
         </div>
       </div>
-
+      <Ads adSlot="4737260621" test={true} />
       {/* Sections */}
       <div className="max-w-6xl mx-auto py-16 space-y-16 px-4">
         {/* Compress Section */}
@@ -37,7 +37,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <Ads adSlot="YOUR_AD_SLOT_ID" test={true} />
+        
         {/* Convert Section */}
         <div className="flex flex-col-reverse md:grid md:grid-cols-2 gap-8 items-center">
           <div>
