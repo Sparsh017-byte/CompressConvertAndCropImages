@@ -1,6 +1,6 @@
 // src/pages/Home.jsx
 import { Link } from "react-router-dom";
-import Ads from './components/Ads';
+import Ads from './Ads';
 
 export default function Home() {
   return (
