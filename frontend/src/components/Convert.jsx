@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Uploader from './Uploader';
+import Ads from './Ads';
 
 export default function Convert() {
   const [format, setFormat] = useState('webp');
@@ -30,6 +31,7 @@ export default function Convert() {
         </div>
       )}
     />
+    <Ads adSlot="YOUR_AD_SLOT_ID" test={true} />
     {/* Article Section */}
       <section className="mt-12 p-6 bg-white rounded-2xl shadow-md">
         <h2 className="text-xl font-bold">How Image Conversion Works</h2>
