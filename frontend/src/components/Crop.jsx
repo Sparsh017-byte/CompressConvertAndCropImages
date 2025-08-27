@@ -3,6 +3,7 @@ import { useState } from "react";
 import Uploader from "./Uploader.jsx";
 import ReactCrop, { centerCrop, makeAspectCrop } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
+import Ads from './Ads';
 
 export default function CropPage() {
   const [crop, setCrop] = useState();
@@ -106,6 +107,7 @@ export default function CropPage() {
           </>
         )}
       />
+      <Ads adSlot="YOUR_AD_SLOT_ID" test={true} />
       {/* 📖 Article Section */}
       <div className="mt-12 p-6 bg-white rounded-2xl shadow-md">
         <h2 className="text-2xl font-bold mb-4">How Images Are Cropped</h2>
