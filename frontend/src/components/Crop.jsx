@@ -59,34 +59,36 @@ export default function CropPage() {
   if (!completedCrop || !imgRef) return;
 
   const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+
   const naturalWidth = imgRef.naturalWidth;
   const naturalHeight = imgRef.naturalHeight;
   const displayWidth = imgRef.width;
   const displayHeight = imgRef.height;
 
-  // Calculate scale
-  const scaleX = naturalWidth / displayWidth;
-  const scaleY = naturalHeight / displayHeight;
+  // Compute aspect ratio scaling
+  const ratioWidth = displayWidth / naturalWidth;
+  const ratioHeight = displayHeight / naturalHeight;
+  const ratio = Math.min(ratioWidth, ratioHeight);
 
-  // Calculate actual image area if objectFit: "contain"
-  const offsetX = (displayWidth - (naturalWidth / scaleY)) / 2;
-  const offsetY = (displayHeight - (naturalHeight / scaleX)) / 2;
+  // Compute actual rendered image size inside the img element
+  const renderedWidth = naturalWidth * ratio;
+  const renderedHeight = naturalHeight * ratio;
 
-  canvas.width = completedCrop.width * scaleX;
-  canvas.height = completedCrop.height * scaleY;
-  const ctx = canvas.getContext("2d");
+  // Compute padding (letterboxing) added due to objectFit: "contain"
+  const paddingX = (displayWidth - renderedWidth) / 2;
+  const paddingY = (displayHeight - renderedHeight) / 2;
 
-  ctx.drawImage(
-    imgRef,
-    (completedCrop.x - offsetX) * scaleX,
-    (completedCrop.y - offsetY) * scaleY,
-    completedCrop.width * scaleX,
-    completedCrop.height * scaleY,
-    0,
-    0,
-    completedCrop.width * scaleX,
-    completedCrop.height * scaleY
-  );
+  // Map crop coordinates to actual image pixels
+  const sx = (completedCrop.x - paddingX) / ratio;
+  const sy = (completedCrop.y - paddingY) / ratio;
+  const sw = completedCrop.width / ratio;
+  const sh = completedCrop.height / ratio;
+
+  canvas.width = sw;
+  canvas.height = sh;
+
+  ctx.drawImage(imgRef, sx, sy, sw, sh, 0, 0, sw, sh);
 
   canvas.toBlob(async (blob) => {
     if (!blob) return;
@@ -95,7 +97,7 @@ export default function CropPage() {
       finalBlob = await compressBlobToTargetSize(blob, 150);
     }
     setCroppedUrl(URL.createObjectURL(finalBlob));
-  }, imgRef?.src?.startsWith("data:image/") ? imgRef.src.split(";")[0].split(":")[1] : "image/png");
+  }, "image/png");
 }
 
 
