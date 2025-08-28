@@ -56,37 +56,48 @@ export default function CropPage() {
   }
 
   function getCroppedImg() {
-    if (!completedCrop || !imgRef) return;
+  if (!completedCrop || !imgRef) return;
 
-    const canvas = document.createElement("canvas");
-    const scaleX = imgRef.naturalWidth / imgRef.width;
-    const scaleY = imgRef.naturalHeight / imgRef.height;
-    canvas.width = completedCrop.width;
-    canvas.height = completedCrop.height;
-    const ctx = canvas.getContext("2d");
+  const canvas = document.createElement("canvas");
+  const naturalWidth = imgRef.naturalWidth;
+  const naturalHeight = imgRef.naturalHeight;
+  const displayWidth = imgRef.width;
+  const displayHeight = imgRef.height;
 
-    ctx.drawImage(
-      imgRef,
-      completedCrop.x * scaleX,
-      completedCrop.y * scaleY,
-      completedCrop.width * scaleX,
-      completedCrop.height * scaleY,
-      0,
-      0,
-      completedCrop.width,
-      completedCrop.height
-    );
+  // Calculate scale
+  const scaleX = naturalWidth / displayWidth;
+  const scaleY = naturalHeight / displayHeight;
 
-    canvas.toBlob(async (blob) => {
-      if (!blob) return;
-      let finalBlob = blob;
-      if (blob.size > 200 * 1024) {
-        finalBlob = await compressBlobToTargetSize(blob, 150);
-      }
-      setCroppedUrl(URL.createObjectURL(finalBlob));
-    }, imgRef?.src?.startsWith('data:image/') ? imgRef.src.split(';')[0].split(':')[1] : 'image/png');
+  // Calculate actual image area if objectFit: "contain"
+  const offsetX = (displayWidth - (naturalWidth / scaleY)) / 2;
+  const offsetY = (displayHeight - (naturalHeight / scaleX)) / 2;
 
-  }
+  canvas.width = completedCrop.width * scaleX;
+  canvas.height = completedCrop.height * scaleY;
+  const ctx = canvas.getContext("2d");
+
+  ctx.drawImage(
+    imgRef,
+    (completedCrop.x - offsetX) * scaleX,
+    (completedCrop.y - offsetY) * scaleY,
+    completedCrop.width * scaleX,
+    completedCrop.height * scaleY,
+    0,
+    0,
+    completedCrop.width * scaleX,
+    completedCrop.height * scaleY
+  );
+
+  canvas.toBlob(async (blob) => {
+    if (!blob) return;
+    let finalBlob = blob;
+    if (blob.size > 200 * 1024) {
+      finalBlob = await compressBlobToTargetSize(blob, 150);
+    }
+    setCroppedUrl(URL.createObjectURL(finalBlob));
+  }, imgRef?.src?.startsWith("data:image/") ? imgRef.src.split(";")[0].split(":")[1] : "image/png");
+}
+
 
   return (
     <div className="space-y-6">
