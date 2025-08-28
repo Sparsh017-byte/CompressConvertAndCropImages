@@ -78,18 +78,13 @@ export default function CropPage() {
     );
 
     canvas.toBlob(async (blob) => {
-  if (!blob) return;
-
-  let finalBlob = blob;
-
-  // Compress if size > 200 KB
-  if (blob.size > 200 * 1024) {
-    finalBlob = await compressBlobToTargetSize(blob, 150); // 150 KB target
-  }
-
-  const url = URL.createObjectURL(finalBlob);
-  setCroppedUrl(url);
-}, blob.type || 'image/png'); // use blob.type to preserve original type
+      if (!blob) return;
+      let finalBlob = blob;
+      if (blob.size > 200 * 1024) {
+        finalBlob = await compressBlobToTargetSize(blob, 150);
+      }
+      setCroppedUrl(URL.createObjectURL(finalBlob));
+    }, imgRef?.src?.startsWith('data:image/') ? imgRef.src.split(';')[0].split(':')[1] : 'image/png');
 
   }
 
