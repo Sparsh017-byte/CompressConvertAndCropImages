@@ -5,36 +5,6 @@ import ReactCrop, { centerCrop, makeAspectCrop } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 import Ads from './Ads';
 
-async function compressBlobToTargetSize(blob, targetKB) {
-  return new Promise((resolve) => {
-    const img = new Image();
-    img.src = URL.createObjectURL(blob);
-    img.onload = () => {
-      const canvas = document.createElement("canvas");
-      canvas.width = img.width;
-      canvas.height = img.height;
-      const ctx = canvas.getContext("2d");
-      ctx.drawImage(img, 0, 0);
-
-      let quality = 0.9; // start high
-      function compressStep() {
-        canvas.toBlob((compressedBlob) => {
-          if (!compressedBlob) return resolve(blob);
-
-          const sizeKB = compressedBlob.size / 1024;
-          if (sizeKB <= targetKB || quality <= 0.1) {
-            resolve(compressedBlob);
-          } else {
-            quality -= 0.05;
-            compressStep();
-          }
-        }, "image/jpeg", quality);
-      }
-
-      compressStep();
-    };
-  });
-}
 
 
 export default function CropPage() {
