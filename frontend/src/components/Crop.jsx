@@ -112,26 +112,32 @@ export default function CropPage() {
 
 
 
- function getCroppedImg() {
+function getCroppedImg() {
   if (!completedCrop || !imgRef) return;
 
   const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+
   const naturalWidth = imgRef.naturalWidth;
   const naturalHeight = imgRef.naturalHeight;
   const displayWidth = imgRef.width;
   const displayHeight = imgRef.height;
 
-  // Calculate scale
+  // scale ratios
   const scaleX = naturalWidth / displayWidth;
   const scaleY = naturalHeight / displayHeight;
 
-  // Calculate actual image area if objectFit: "contain"
-  const offsetX = (displayWidth - (naturalWidth / scaleY)) / 2;
-  const offsetY = (displayHeight - (naturalHeight / scaleX)) / 2;
+  // when using objectFit: "contain"
+  const renderRatio = Math.min(displayWidth / naturalWidth, displayHeight / naturalHeight);
+  const drawnWidth = naturalWidth * renderRatio;
+  const drawnHeight = naturalHeight * renderRatio;
 
+  const offsetX = (displayWidth - drawnWidth) / 2;
+  const offsetY = (displayHeight - drawnHeight) / 2;
+
+  // set canvas to crop size
   canvas.width = completedCrop.width * scaleX;
   canvas.height = completedCrop.height * scaleY;
-  const ctx = canvas.getContext("2d");
 
   ctx.drawImage(
     imgRef,
@@ -145,21 +151,25 @@ export default function CropPage() {
     completedCrop.height * scaleY
   );
 
-  canvas.toBlob((blob) => {
-  if (!blob) return;
+  canvas.toBlob(async (blob) => {
+    if (!blob) return;
 
-  (async () => {
+    console.log("Initial cropped size:", (blob.size / 1024).toFixed(2), "KB");
+
     let finalBlob = blob;
     if (blob.size > 200 * 1024) {
-      finalBlob = await compressBlobToTargetSize(blob, 150); // target 150 KB
+      finalBlob = await compressBlobToTargetSize(blob, 150);
     }
+
+    console.log("Final compressed size:", (finalBlob.size / 1024).toFixed(2), "KB");
+
     setCroppedUrl(URL.createObjectURL(finalBlob));
-  })();
-}, imgRef?.src?.startsWith("data:image/") 
-      ? imgRef.src.split(";")[0].split(":")[1] 
-      : "image/png"
-);
- }
+  },
+  imgRef.src.startsWith("data:image/") 
+    ? imgRef.src.split(";")[0].split(":")[1] 
+    : "image/png"
+  );
+}
 
   return (
 
