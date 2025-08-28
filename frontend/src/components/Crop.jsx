@@ -117,7 +117,7 @@ export default function CropPage() {
                   />
                 </ReactCrop>
 
-                <button className="btn" onClick={getCroppedImg}>
+                <button className="btn cursor-pointer" onClick={getCroppedImg}>
                   Crop & Preview
                 </button>
 
