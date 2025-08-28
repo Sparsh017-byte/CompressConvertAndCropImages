@@ -3,6 +3,7 @@ import { useState } from "react";
 import Uploader from "./Uploader.jsx";
 import ReactCrop, { centerCrop, makeAspectCrop } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
+import Ads from './Ads';
 
 export async function compressBlobToTargetSize(blob, targetKB) {
   return new Promise((resolve) => {
