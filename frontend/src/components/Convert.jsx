@@ -1,38 +1,127 @@
+"use client";
 import { useState } from 'react';
 import Uploader from './Uploader';
 import Ads from './Ads';
 
+// Reuse the compression function
+async function compressBlobToTargetSize(blob, targetKB) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    const mimeType = blob.type; // keep original type
+    img.src = URL.createObjectURL(blob);
+
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0);
+
+      let quality = 0.9; // start high
+      function compressStep() {
+        canvas.toBlob((compressedBlob) => {
+          if (!compressedBlob) return resolve(blob);
+          const sizeKB = compressedBlob.size / 1024;
+          if (sizeKB <= targetKB || quality <= 0.1) {
+            resolve(compressedBlob);
+          } else {
+            quality -= 0.05;
+            compressStep();
+          }
+        }, mimeType, quality);
+      }
+      compressStep();
+    };
+  });
+}
+
 export default function Convert() {
   const [format, setFormat] = useState('webp');
+  const [convertedUrl, setConvertedUrl] = useState(null);
+
+  // Converts and compresses image client-side
+  async function handleConvert(file) {
+    if (!file) return;
+    const img = new Image();
+    img.src = URL.createObjectURL(file);
+    await new Promise((r) => (img.onload = r));
+
+    const canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+
+    // Convert to selected format
+    canvas.toBlob(async (blob) => {
+      if (!blob) return;
+
+      let finalBlob = blob;
+
+      // Compress if bigger than 200 KB
+      if (blob.size > 200 * 1024) {
+        finalBlob = await compressBlobToTargetSize(blob, 150);
+      }
+
+      // Convert to target format if different
+      if (format !== blob.type.split('/')[1]) {
+        canvas.toBlob((convertedBlob) => {
+          setConvertedUrl(URL.createObjectURL(convertedBlob));
+        }, `image/${format}`);
+      } else {
+        setConvertedUrl(URL.createObjectURL(finalBlob));
+      }
+    }, file.type);
+  }
 
   return (
     <div className="space-y-6">
       <Uploader
-      actions={({ transform, uploading }) => (
-        <div className="flex items-center gap-2">
-          <select
-            value={format}
-            onChange={(e) => setFormat(e.target.value)}
-            className="border rounded p-2"
+        actions={({ file, uploading }) => (
+          <div className="flex items-center gap-2">
+            <select
+              value={format}
+              onChange={(e) => setFormat(e.target.value)}
+              className="border rounded p-2"
+            >
+              <option value="webp">WebP</option>
+              <option value="jpeg">JPEG</option>
+              <option value="png">PNG</option>
+              <option value="jpg">JPG</option>
+              <option value="avif">AVIF</option>
+            </select>
+            <button
+              className="btn cursor-pointer"
+              disabled={uploading || !file}
+              onClick={() => handleConvert(file)}
+            >
+              Convert & Compress
+            </button>
+          </div>
+        )}
+      />
+
+      {convertedUrl && (
+        <div className="mt-4 space-y-2">
+          <h2 className="font-medium">Converted Result</h2>
+          <img
+            src={convertedUrl}
+            alt="Converted"
+            className="max-h-64 w-full object-contain border rounded"
+          />
+          <a
+            href={convertedUrl}
+            download={`converted.${format}`}
+            className="btn inline-block mt-2"
           >
-            <option value="webp">WebP</option>
-            <option value="jpeg">JPEG</option>
-            <option value="png">PNG</option>
-            <option value="jpg">JPG</option>
-            <option value="avif">AVIF</option>
-          </select>
-          <button
-            className="btn cursor-pointer"
-            disabled={uploading}
-            onClick={() => transform('convert', { format }, `output.${format}`)}
-          >
-            Convert
-          </button>
+            Download
+          </a>
         </div>
       )}
-    />
-    <Ads adSlot="1095762036" test={true} />
-    {/* Article Section */}
+
+      <Ads adSlot="1095762036" test={true} />
+
+      {/* Article Section */}
       <section className="mt-12 p-6 bg-white rounded-2xl shadow-md">
         <h2 className="text-xl font-bold">How Image Conversion Works</h2>
         <p>
@@ -48,32 +137,9 @@ export default function Convert() {
           <strong> WebP</strong>, which often provides the best balance between
           quality and file size.
         </p>
-        <h3 className="text-lg font-semibold">Learn More:</h3>
-        <ul className="list-disc list-inside space-y-1">
-          <li>
-            <a
-              href="https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 underline"
-            >
-              MDN: Common Image File Formats
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://en.wikipedia.org/wiki/Comparison_of_graphics_file_formats"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 underline"
-            >
-              Wikipedia: Graphics File Format Comparison
-            </a>
-          </li>
-        </ul>
       </section>
-
     </div>
   );
 }
+
 
