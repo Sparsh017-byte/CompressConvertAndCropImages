@@ -145,21 +145,15 @@ export default function CropPage() {
     completedCrop.height * scaleY
   );
 
-  canvas.toBlob((blob) => {
-  if (!blob) return;
-
-  (async () => {
+  canvas.toBlob(async (blob) => {
+    if (!blob) return;
     let finalBlob = blob;
     if (blob.size > 200 * 1024) {
-      finalBlob = await compressBlobToTargetSize(blob, 150); // target 150 KB
+      finalBlob = await compressBlobToTargetSize(blob, 150);
     }
     setCroppedUrl(URL.createObjectURL(finalBlob));
-  })();
-}, imgRef?.src?.startsWith("data:image/") 
-      ? imgRef.src.split(";")[0].split(":")[1] 
-      : "image/png"
-);
-
+    }, imgRef?.src?.startsWith('data:image/') ? imgRef.src.split(';')[0].split(':')[1] : 'image/png');
+ }
 
   return (
 
