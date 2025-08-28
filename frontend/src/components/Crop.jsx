@@ -45,10 +45,18 @@ export default function CropPage() {
       completedCrop.height
     );
 
-    canvas.toBlob((blob) => {
-      if (!blob) return;
-      const url = URL.createObjectURL(blob);
-      setCroppedUrl(url);
+    canvas.toBlob(async (blob) => {
+    if (!blob) return;
+
+    let finalBlob = blob;
+
+    // ✅ Compress if size > 200 KB
+    if (blob.size > 200*1024) {
+      finalBlob = await compressBlobToTargetSize(blob, 150); // 150 KB target
+    }
+
+    const url = URL.createObjectURL(finalBlob);
+    setCroppedUrl(url);
     }, "image/png");
   }
 
