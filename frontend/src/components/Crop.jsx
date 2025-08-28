@@ -142,6 +142,7 @@ export default function CropPage() {
         )}
       />
       {/* 📖 Article Section */}
+      <Ads adSlot="2018763798" test={true} />
       <div className="mt-12 p-6 bg-white rounded-2xl shadow-md">
         <h2 className="text-2xl font-bold mb-4">How Images Are Cropped</h2>
         <p className="text-gray-700 mb-4">
