@@ -88,7 +88,7 @@ export default function Uploader({ actions }) {
         <p className="mb-2 font-medium">Drag & drop an image here</p>
         <p className="text-sm text-gray-500 mb-4">or</p>
         <label className="btn cursor-pointer inline-block">
-          Choose file
+          Choose file (MAX 10MB)
           <input type="file" accept="image/*" className="hidden" onChange={onChange} />
         </label>
       </div>
