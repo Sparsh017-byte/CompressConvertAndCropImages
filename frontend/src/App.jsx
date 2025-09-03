@@ -48,7 +48,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Nav />
-      <main className="w-[90vw] mx-auto px-4 py-6 space-y-4 flex-grow">
+      <main className="w-[90vw] mx-auto px-4 py-6 space-y-4 flex-grow pb-10">
         <HealthPill />
         <Routes>
           <Route path="/" element={<Navigate to="/home" replace />} />
