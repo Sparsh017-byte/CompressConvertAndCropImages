@@ -76,8 +76,8 @@ const Footer = () => {
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
             © 2025{" "}
-            <a href="https://yourwebsite.com" className="hover:underline">
-              YourBrand™
+            <a href="https://cccimages.online" className="hover:underline">
+              CCCImages™
             </a>
             . All Rights Reserved.
           </span>
