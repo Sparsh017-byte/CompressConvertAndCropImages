@@ -45,27 +45,23 @@ function HealthPill() {
 }
 
 export default function App() {
-  const location = useLocation();
-
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Nav />
-      <main className="w-[90vw] mx-auto px-4 py-6 space-y-4">
+      <main className="w-[90vw] mx-auto px-4 py-6 space-y-4 flex-grow">
         <HealthPill />
         <Routes>
           <Route path="/" element={<Navigate to="/home" replace />} />
           <Route path="/home" element={<Home />} />
           <Route path="/compress" element={<Compress />} />
-          <Route path="/convert"  element={<Convert />} />
+          <Route path="/convert" element={<Convert />} />
           <Route path="/crop" element={<Crop />} />
           <Route path="*" element={<div>Not Found</div>} />
         </Routes>
       </main>
 
-      {/* ✅ Footer rendered outside <main> 
-      
-      */}
-      {location.pathname === "/home" && <Footer />}
+      {/* ✅ Footer always visible */}
+      <Footer />
     </div>
   );
 }
