@@ -123,7 +123,7 @@ export default function Uploader({ actions }) {
                 className="max-h-64 w-full object-contain border rounded"
               />
               <button
-                className="btn mt-2 inline-block"
+                className="btn mt-2 inline-block cursor-pointer"
                 onClick={() => {
                   // trigger download
                   const link = document.createElement("a");
