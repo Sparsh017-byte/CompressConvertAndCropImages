@@ -8,6 +8,7 @@ import Home from './components/Home.jsx'
 import Crop from './components/Crop.jsx';
 import Footer from './components/Footer.jsx';
 import Privacy from './components/Privacy.jsx';
+import Terms from "./components/Terms.jsx";
 import ScrollToTop from './components/ScrollToTop.jsx';
 import API from './api.js'
 
@@ -60,6 +61,7 @@ export default function App() {
           <Route path="/compress" element={<Compress />} />
           <Route path="/convert" element={<Convert />} />
           <Route path="/crop" element={<Crop />} />
+          <Route path="/terms" element={<Terms />} />
           <Route path="/privacy-policy" element={<Privacy />} />
           <Route path="*" element={<div>Not Found</div>} />
         </Routes>
