@@ -72,7 +72,7 @@ const Footer = () => {
                 <li>
                   <Link to="/terms" className="hover:underline">
                     Terms &amp; Conditions
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
