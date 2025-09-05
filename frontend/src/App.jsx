@@ -7,6 +7,7 @@ import Convert from './components/Convert.jsx'
 import Home from './components/Home.jsx'
 import Crop from './components/Crop.jsx';
 import Footer from './components/Footer.jsx';
+import Privacy from './components/Privacy.jsx'
 import API from './api.js'
 
 function Nav() {
@@ -56,6 +57,7 @@ export default function App() {
           <Route path="/compress" element={<Compress />} />
           <Route path="/convert" element={<Convert />} />
           <Route path="/crop" element={<Crop />} />
+          <Route path="/privacy-policy" element={<Privacy />} />
           <Route path="*" element={<div>Not Found</div>} />
         </Routes>
       </main>
