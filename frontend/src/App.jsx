@@ -7,7 +7,8 @@ import Convert from './components/Convert.jsx'
 import Home from './components/Home.jsx'
 import Crop from './components/Crop.jsx';
 import Footer from './components/Footer.jsx';
-import Privacy from './components/Privacy.jsx'
+import Privacy from './components/Privacy.jsx';
+import ScrollToTop from './components/ScrollToTop.jsx';
 import API from './api.js'
 
 function Nav() {
@@ -51,6 +52,8 @@ export default function App() {
       <Nav />
       <main className="w-[90vw] mx-auto px-4 py-6 space-y-4 flex-grow pb-10">
         <HealthPill />
+        <ScrollToTop />
+
         <Routes>
           <Route path="/" element={<Navigate to="/home" replace />} />
           <Route path="/home" element={<Home />} />
