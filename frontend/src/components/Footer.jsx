@@ -63,9 +63,9 @@ const Footer = () => {
               </h2>
               <ul className="text-gray-600 font-medium">
                 <li className="mb-4">
-                  <Link to ="/privacy-policy" className="hover:underline">
+                  <a href ="#" className="hover:underline">
                     Privacy Policy
-                  </Link>
+                  </a>
                 </li>
                 <li>
                   <a href="#" className="hover:underline">
