@@ -117,12 +117,37 @@ export default function Uploader({ actions }) {
           {output && (
             <div className="mt-3">
               <h2 className="font-medium">Output</h2>
-              <img src={output} alt="output" className="max-h-64 w-full object-contain border rounded" />
-              <a href={output} download={outputFilename} className="btn mt-2 inline-block">
+              <img
+                src={output}
+                alt="output"
+                className="max-h-64 w-full object-contain border rounded"
+              />
+              <button
+                className="btn mt-2 inline-block"
+                onClick={() => {
+                  // trigger download
+                  const link = document.createElement("a");
+                  link.href = output;
+                  link.download = outputFilename;
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+
+                  // ✅ send analytics event
+                  if (window.gtag) {
+                    window.gtag("event", "image_download", {
+                      event_category: "engagement",
+                      event_label: outputFilename,
+                      value: 1,
+                    });
+                  }
+                }}
+              >
                 Download
-              </a>
+              </button>
             </div>
           )}
+
 
           {/* Error */}
           {error && <div className="text-red-600 mt-2">{error}</div>}
