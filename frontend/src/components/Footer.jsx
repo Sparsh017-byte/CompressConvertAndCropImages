@@ -44,13 +44,13 @@ const Footer = () => {
               </h2>
               <ul className="text-gray-600 font-medium">
                 <li className="mb-4">
-                  <a href="https://github.com" className="hover:underline">
-                    Github
+                  <a href="https://www.linkedin.com/company/cccimages" className="hover:underline">
+                    LinkedIn
                   </a>
                 </li>
                 <li>
                   <a href="https://discord.com" className="hover:underline">
-                    Discord
+                    Twitter
                   </a>
                 </li>
               </ul>
