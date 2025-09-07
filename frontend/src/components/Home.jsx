@@ -71,6 +71,30 @@ export default function Home() {
             </p>
           </div>
         </div>
+        <div className="bg-gray-50 rounded-2xl shadow-md p-8">
+          <h2 className="text-3xl font-bold mb-4">About Us</h2>
+          <p className="text-lg text-gray-700 mb-4">
+            Welcome to <strong>CCC Images</strong> — your free online tool to 
+            <strong> compress images, convert formats, and crop pictures</strong> 
+            with ease. Our mission is to make image optimization simple, fast, 
+            and reliable, so your photos are always ready for websites, blogs, 
+            and social media.
+          </p>
+          <p className="text-lg text-gray-700 mb-4">
+            Whether you need to reduce image size for faster website loading, 
+            change file types for compatibility, or crop photos to the perfect 
+            dimensions, <strong>CCCImages.online</strong> is here to help. 
+            We focus on speed, privacy, and quality — ensuring your images stay 
+            sharp while saving valuable storage and bandwidth.
+          </p>
+          <p className="text-lg text-gray-700">
+            For support or queries, reach us at:{" "}
+            <a href="mailto:support@cccimages.online" className="text-[#008fb3] underline">
+              support@cccimages.online
+            </a>
+          </p>
+        </div>
+      
       </div>
       
     </div>
