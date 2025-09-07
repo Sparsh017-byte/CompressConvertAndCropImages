@@ -100,7 +100,7 @@ export default function Uploader({ actions }) {
             <div>
               {file.name} • {(file.size / 1024).toFixed(1)} KB • {file.type}
             </div>
-            <button className="btn cursor-pointer" onClick={reset}>
+            <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" onClick={reset}>
               Reset
             </button>
           </div>
@@ -123,7 +123,7 @@ export default function Uploader({ actions }) {
                 className="max-h-64 w-full object-contain border rounded"
               />
               <button
-                className="btn mt-2 inline-block cursor-pointer"
+                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                 onClick={() => {
                   // trigger download
                   const link = document.createElement("a");
