@@ -26,15 +26,11 @@ const Footer = () => {
               </h2>
               <ul className="text-gray-600 font-medium">
                 <li className="mb-4">
-                  <a href="https://react.dev" className="hover:underline">
-                    React
+                  <a href="https://en.wikipedia.org/wiki/Image_compression" className="hover:underline">
+                    Wikipedia
                   </a>
                 </li>
-                <li>
-                  <a href="https://tailwindcss.com" className="hover:underline">
-                    Tailwind CSS
-                  </a>
-                </li>
+                
               </ul>
             </div>
 
