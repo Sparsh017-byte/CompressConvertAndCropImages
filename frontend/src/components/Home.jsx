@@ -75,7 +75,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold mb-4">About Us</h2>
           <p className="text-lg text-gray-700 mb-4">
             Welcome to <strong>CCC Images</strong> — your free online tool to 
-            <strong> compress images, convert formats, and crop pictures</strong> 
+            <strong> compress images, convert formats, and crop pictures </strong> 
             with ease. Our mission is to make image optimization simple, fast, 
             and reliable, so your photos are always ready for websites, blogs, 
             and social media.
