@@ -11,6 +11,9 @@ import Privacy from './components/Privacy.jsx';
 import Terms from "./components/Terms.jsx";
 import ScrollToTop from './components/ScrollToTop.jsx';
 import API from './api.js'
+import Blog from './pages/Blog.jsx';
+import BlogDetail from './pages/BlogDetail.jsx'
+
 
 function Nav() {
   const tabs = [
@@ -63,6 +66,8 @@ export default function App() {
           <Route path="/crop" element={<Crop />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy-policy" element={<Privacy />} />
+          <Route path="/blogs" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogDetail />} />
           <Route path="*" element={<div>Not Found</div>} />
         </Routes>
       </main>

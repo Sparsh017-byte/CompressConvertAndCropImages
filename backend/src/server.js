@@ -6,6 +6,9 @@ const fs = require('fs');
 const fsp = require('fs/promises');
 const multer = require('multer');
 const sharp = require('sharp');
+require('dotenv').config();
+const mongoose = require('mongoose');
+const blogRoutes = require('../routes/blogs');
 
 const app = express();
 
@@ -38,6 +41,7 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(morgan('dev'));
+app.use('/api/blogs', blogRoutes);
 
 // ---- Health check
 app.get('/api/health', (_req, res) => {
@@ -287,6 +291,21 @@ app.use((err, _req, res, _next) => {
 });
 
 // ---- Start server
-app.listen(PORT, () => {
-  console.log(`API running on http://localhost:${PORT}`);
-});
+const MONGO_URI = process.env.MONGO_URI;
+if (!MONGO_URI) {
+  console.warn('MONGO_URI not set. Blog routes will fail until you set MONGO_URI in .env.');
+  app.listen(PORT, () => {
+    console.log(`API running (no DB) on http://localhost:${PORT}`);
+  });
+} else {
+  mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+      app.listen(PORT, () => {
+        console.log(`API + MongoDB running on http://localhost:${PORT}`);
+      });
+    })
+    .catch(err => {
+      console.error('Mongo connection error:', err);
+      process.exit(1);
+    });
+}
