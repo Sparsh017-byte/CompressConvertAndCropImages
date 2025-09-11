@@ -292,20 +292,20 @@ app.use((err, _req, res, _next) => {
 
 // ---- Start server
 const MONGO_URI = process.env.MONGO_URI;
-if (!MONGO_URI) {
-  console.warn('MONGO_URI not set. Blog routes will fail until you set MONGO_URI in .env.');
-  app.listen(PORT, () => {
-    console.log(`API running (no DB) on http://localhost:${PORT}`);
-  });
-} else {
-  mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+
+app.listen(PORT, () => {
+  console.log(`API running on http://localhost:${PORT}`);
+
+  if (!MONGO_URI) {
+    console.warn('⚠️  MONGO_URI not set. Blog routes will fail until you set MONGO_URI in .env.');
+    return;
+  }
+
+  mongoose.connect(MONGO_URI)
     .then(() => {
-      app.listen(PORT, () => {
-        console.log(`API + MongoDB running on http://localhost:${PORT}`);
-      });
+      console.log("✅ MongoDB connected");
     })
     .catch(err => {
-      console.error('Mongo connection error:', err);
-      process.exit(1);
+      console.error("❌ Mongo connection error:", err.message);
     });
-}
+});
