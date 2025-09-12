@@ -78,13 +78,13 @@ export default function CropPage() {
     );
 
     canvas.toBlob(async (blob) => {
-  if (!blob) return;
-  let finalBlob = blob;
-  if (blob.size > 200 * 1024) {
-    finalBlob = await compressBlobToTargetSize(blob, 150);
-  }
-  setCroppedUrl(URL.createObjectURL(finalBlob));
-}, imgRef?.src?.startsWith('data:image/') ? imgRef.src.split(';')[0].split(':')[1] : 'image/png');
+      if (!blob) return;
+      let finalBlob = blob;
+      if (blob.size > 200 * 1024) {
+        finalBlob = await compressBlobToTargetSize(blob, 150);
+      }
+      setCroppedUrl(URL.createObjectURL(finalBlob));
+    }, imgRef?.src?.startsWith('data:image/') ? imgRef.src.split(';')[0].split(':')[1] : 'image/png');
   }
 
   return (
@@ -131,6 +131,15 @@ export default function CropPage() {
                     <a
                       href={croppedUrl}
                       download="cropped.png"
+                      onClick={() => {
+                        if (window.gtag) {
+                          window.gtag("event", "image_download", {
+                            event_category: "engagement",
+                            event_label: "cropped.png",
+                            value: 1,
+                          });
+                        }
+                      }}
                       className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-4"
                     >
                       Download
@@ -147,9 +156,9 @@ export default function CropPage() {
       <div className="mt-12 p-6 bg-white rounded-2xl shadow-md">
         <h2 className="text-2xl font-bold mb-4">How Images Are Cropped</h2>
         <p className="text-gray-700 mb-4">
-          Image cropping is the process of removing unwanted outer areas from an image 
-          to improve its composition, highlight a subject, or adjust dimensions. 
-          Cropping is one of the most common and powerful tools in digital image editing, 
+          Image cropping is the process of removing unwanted outer areas from an image
+          to improve its composition, highlight a subject, or adjust dimensions.
+          Cropping is one of the most common and powerful tools in digital image editing,
           helping optimize pictures for social media, websites, and print.
         </p>
 
@@ -163,37 +172,37 @@ export default function CropPage() {
 
         <h3 className="text-xl font-semibold mb-2">How This Crop Tool Works</h3>
         <p className="text-gray-700 mb-4">
-          Our crop tool allows you to upload any image, adjust the crop area using a 
-          draggable frame, and instantly preview the result. Once satisfied, you can 
-          download the cropped version in just one click. It’s designed to be fast, 
+          Our crop tool allows you to upload any image, adjust the crop area using a
+          draggable frame, and instantly preview the result. Once satisfied, you can
+          download the cropped version in just one click. It’s designed to be fast,
           lightweight, and runs entirely in your browser — no uploads to external servers.
         </p>
 
         <h3 className="text-xl font-semibold mb-2">Learn More About Cropping</h3>
         <p className="text-gray-700 mb-4">
-          If you’d like to explore more about image cropping and composition, check out these 
+          If you’d like to explore more about image cropping and composition, check out these
           helpful resources:
         </p>
         <ul className="list-disc list-inside text-blue-600 underline">
           <li>
-            <a 
-              href="https://helpx.adobe.com/photoshop/using/cropping-straightening-photos.html" 
+            <a
+              href="https://helpx.adobe.com/photoshop/using/cropping-straightening-photos.html"
               target="_blank" rel="noopener noreferrer"
             >
               Adobe Photoshop: Cropping and Straightening
             </a>
           </li>
           <li>
-            <a 
-              href="https://www.canva.com/learn/photo-cropping/" 
+            <a
+              href="https://www.canva.com/learn/photo-cropping/"
               target="_blank" rel="noopener noreferrer"
             >
               Canva Guide: Photo Cropping Tips
             </a>
           </li>
           <li>
-            <a 
-              href="https://en.wikipedia.org/wiki/Cropping_(image)" 
+            <a
+              href="https://en.wikipedia.org/wiki/Cropping_(image)"
               target="_blank" rel="noopener noreferrer"
             >
               Wikipedia: Cropping (Image)
