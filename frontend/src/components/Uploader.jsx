@@ -9,6 +9,7 @@ export default function Uploader({ actions }) {
   const [uploading, setUploading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [outputFilename, setOutputFilename] = useState('output.png');
+  const [resetCount, setResetCount] = useState(0);
 
   // --- File picking ---
   const pickFile = useCallback((f) => {
@@ -47,6 +48,8 @@ export default function Uploader({ actions }) {
     setUploading(false);
     setProgress(0);
     setOutputFilename('output.png');
+    setResetCount(c => c + 1); // 🔥 trigger reset for children
+
   };
 
   // --- Transform / Upload ---
@@ -108,7 +111,7 @@ export default function Uploader({ actions }) {
 
           {/* Actions passed from parent (Convert / Compress / Crop etc.) */}
           <div className="flex gap-2 mt-3 flex-wrap">
-            {actions({ transform, uploading, file, preview })}
+            {actions({ transform, uploading, file, preview,resetCount })}
           </div>
 
           {uploading && <div className="text-sm text-gray-500">Uploading… {progress}%</div>}

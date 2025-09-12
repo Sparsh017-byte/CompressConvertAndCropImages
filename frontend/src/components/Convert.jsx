@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Uploader from './Uploader';
 import Ads from './Ads';
 
@@ -38,6 +38,12 @@ async function compressBlobToTargetSize(blob, targetKB) {
 export default function Convert() {
   const [format, setFormat] = useState('webp');
   const [convertedUrl, setConvertedUrl] = useState(null);
+  const [resetCount, setResetCount] = useState(0);
+
+  // 🔥 Clear converted result whenever resetCount changes
+  useEffect(() => {
+    setConvertedUrl(null);
+  }, [resetCount]);
 
   // Converts and compresses image client-side
   async function handleConvert(file) {
@@ -128,8 +134,6 @@ export default function Convert() {
         </div>
       )}
 
-
-
       {/* Article Section */}
       <section className="mt-12 p-6 bg-white rounded-2xl shadow-md">
         <h2 className="text-xl font-bold">How Image Conversion Works</h2>
@@ -150,5 +154,3 @@ export default function Convert() {
     </div>
   );
 }
-
-
