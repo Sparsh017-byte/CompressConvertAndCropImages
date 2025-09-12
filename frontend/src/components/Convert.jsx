@@ -83,8 +83,10 @@ export default function Convert() {
   return (
     <div className="space-y-6">
       <Uploader
+        resetCount={resetCount}         // ✅ pass resetCount
+        setResetCount={setResetCount}   // ✅ pass setResetCount
         actions={({ file, uploading }) => (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap mt-3">
             <select
               value={format}
               onChange={(e) => setFormat(e.target.value)}
