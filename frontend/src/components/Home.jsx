@@ -25,7 +25,7 @@ export default function Home() {
       </div>
 
       {/* Short SEO Description */}
-      <section className="max-w-4xl mx-auto text-center px-4 py-8">
+      <section className="max-w-4xl mt-4 mb-4 mx-auto text-center px-4 py-8">
         <p className="text-lg text-gray-700">
           <strong>CCC Images</strong> is your free online tool to
           <strong> compress, convert, and crop images </strong> in seconds.
