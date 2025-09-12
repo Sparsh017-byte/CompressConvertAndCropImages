@@ -58,7 +58,7 @@ export default function Home() {
             </h2>
             <p className="text-lg text-gray-600">
               Easily convert between formats like JPEG, PNG, WebP, and AVIF.
-              Perfect for adapting images to different platforms and needs.
+              Perfect for adapting images to different platforms and needs
             </p>
           </div>
           <picture>
