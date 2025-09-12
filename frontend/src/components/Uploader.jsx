@@ -48,7 +48,9 @@ export default function Uploader({ actions }) {
     setUploading(false);
     setProgress(0);
     setOutputFilename('output.png');
-    setResetCount(c => c + 1); // 🔥 trigger reset for children
+    if (setResetCount) {
+      setResetCount((c) => c + 1); // 🔥 trigger parent reset
+    }
 
   };
 
