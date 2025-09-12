@@ -24,7 +24,7 @@ export default function Home() {
         </div>
       </div>
 
-      <Ads adSlot="4737260621" test={true} />
+      
 
       {/* Sections */}
       <div className="max-w-6xl mx-auto py-16 space-y-16 px-4">

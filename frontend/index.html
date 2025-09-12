@@ -1,45 +1,48 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Compress, Convert & Crop Images Online - CCCImages</title>
-    <meta name="description" content="CCCImages is a free online tool to crop, compress, and convert images instantly. Fast, secure, and easy-to-use image editor for all your photo needs.">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3993321950885538"
-     crossorigin="anonymous"></script>
-    <script>
-  // Check when the last ad was shown
-  const lastShown = localStorage.getItem("interstitialLastShown");
-  const now = Date.now(); // current timestamp in ms
-  const FIVE_MINUTES = 5 * 60 * 1000; // 5 minutes in ms
 
-  if (!lastShown || (now - parseInt(lastShown)) > FIVE_MINUTES) {
-    // Show the ad
-    (function(s){
-      s.dataset.zone='9840400';
-      s.src='https://groleegni.net/vignette.min.js';
-    })([document.documentElement, document.body]
-      .filter(Boolean)
-      .pop()
-      .appendChild(document.createElement('script')));
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compress, Convert & Crop Images Online - CCCImages</title>
+  <meta name="description"
+    content="CCCImages is a free online tool to crop, compress, and convert images instantly. Fast, secure, and easy-to-use image editor for all your photo needs.">
+  
+  <script>
+    // Check when the last ad was shown
+    const lastShown = localStorage.getItem("interstitialLastShown");
+    const now = Date.now(); // current timestamp in ms
+    const FIVE_MINUTES = 5 * 60 * 1000; // 5 minutes in ms
 
-    // Save current timestamp
-    localStorage.setItem("interstitialLastShown", now.toString());
-  }
-</script>
+    if (!lastShown || (now - parseInt(lastShown)) > FIVE_MINUTES) {
+      // Show the ad
+      (function (s) {
+        s.dataset.zone = '9840400';
+        s.src = 'https://groleegni.net/vignette.min.js';
+      })([document.documentElement, document.body]
+        .filter(Boolean)
+        .pop()
+        .appendChild(document.createElement('script')));
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R38WDM028W"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-R38WDM028W');
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+      // Save current timestamp
+      localStorage.setItem("interstitialLastShown", now.toString());
+    }
+  </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R38WDM028W"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-R38WDM028W');
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
 </html>
