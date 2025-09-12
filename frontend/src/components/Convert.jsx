@@ -38,12 +38,9 @@ async function compressBlobToTargetSize(blob, targetKB) {
 export default function Convert() {
   const [format, setFormat] = useState('webp');
   const [convertedUrl, setConvertedUrl] = useState(null);
-  const [resetCount, setResetCount] = useState(0);
+  
 
-  // 🔥 Clear converted result whenever resetCount changes
-  useEffect(() => {
-    setConvertedUrl(null);
-  }, [resetCount]);
+ 
 
   // Converts and compresses image client-side
   async function handleConvert(file) {
