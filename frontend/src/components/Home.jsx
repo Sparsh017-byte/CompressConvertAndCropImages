@@ -9,7 +9,7 @@ export default function Home() {
       <div className="relative w-full h-[50vh] sm:h-[70vh] md:h-[80vh] overflow-hidden">
         <picture>
           <source srcSet="/images/header2.avif" type="image/avif" />
-          
+
           <img
             src="/images/header2.png" // fallback
             alt="header"
@@ -24,7 +24,15 @@ export default function Home() {
         </div>
       </div>
 
-      
+      {/* Short SEO Description */}
+      <section className="max-w-4xl mx-auto text-center px-4 py-8">
+        <p className="text-lg text-gray-700">
+          <strong>CCC Images</strong> is your free online tool to
+          <strong> compress, convert, and crop images </strong> in seconds.
+          Optimize photos for websites, blogs, and social media while keeping
+          quality intact. <strong>No signup required</strong>, no hassle — just fast, reliable image processing.
+        </p>
+      </section>
 
       {/* Sections */}
       <div className="max-w-6xl mx-auto py-16 space-y-16 px-4">
@@ -32,7 +40,7 @@ export default function Home() {
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <picture>
             <source srcSet="/images/compress.avif" type="image/avif" />
-            
+
             <img
               src="/images/compress.png"
               alt="compress"
@@ -63,7 +71,7 @@ export default function Home() {
           </div>
           <picture>
             <source srcSet="/images/convert.avif" type="image/avif" />
-            
+
             <img
               src="/images/convert.png"
               alt="convert"
@@ -76,7 +84,7 @@ export default function Home() {
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <picture>
             <source srcSet="/images/crop.avif" type="image/avif" />
-            
+
             <img
               src="/images/crop.png"
               alt="crop"
@@ -98,17 +106,17 @@ export default function Home() {
         <div className="bg-gray-50 rounded-2xl shadow-md p-8">
           <h2 className="text-3xl font-bold mb-4">About Us</h2>
           <p className="text-lg text-gray-700 mb-4">
-            Welcome to <strong>CCC Images</strong> — your free online tool to 
-            <strong> compress images, convert formats, and crop pictures </strong> 
-            with ease. Our mission is to make image optimization simple, fast, 
-            and reliable, so your photos are always ready for websites, blogs, 
+            Welcome to <strong>CCC Images</strong> — your free online tool to
+            <strong> compress images, convert formats, and crop pictures </strong>
+            with ease. Our mission is to make image optimization simple, fast,
+            and reliable, so your photos are always ready for websites, blogs,
             and social media.
           </p>
           <p className="text-lg text-gray-700 mb-4">
-            Whether you need to reduce image size for faster website loading, 
-            change file types for compatibility, or crop photos to the perfect 
-            dimensions, <strong>CCCImages.online</strong> is here to help. 
-            We focus on speed, privacy, and quality — ensuring your images stay 
+            Whether you need to reduce image size for faster website loading,
+            change file types for compatibility, or crop photos to the perfect
+            dimensions, <strong>CCCImages.online</strong> is here to help.
+            We focus on speed, privacy, and quality — ensuring your images stay
             sharp while saving valuable storage and bandwidth.
           </p>
           <p className="text-lg text-gray-700">
