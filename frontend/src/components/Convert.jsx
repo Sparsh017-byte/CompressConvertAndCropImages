@@ -119,7 +119,7 @@ export default function Convert() {
         </div>
       )}
 
-      <Ads adSlot="1095762036" test={true} />
+      
 
       {/* Article Section */}
       <section className="mt-12 p-6 bg-white rounded-2xl shadow-md">
