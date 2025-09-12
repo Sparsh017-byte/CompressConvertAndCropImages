@@ -51,7 +51,6 @@ export default function Uploader({ actions }) {
     if (setResetCount) {
       setResetCount((c) => c + 1); // 🔥 trigger parent reset
     }
-
   };
 
   // --- Transform / Upload ---
@@ -113,7 +112,7 @@ export default function Uploader({ actions }) {
 
           {/* Actions passed from parent (Convert / Compress / Crop etc.) */}
           <div className="flex gap-2 mt-3 flex-wrap">
-            {actions({ transform, uploading, file, preview,resetCount })}
+            {actions({ transform, uploading, file, preview, resetCount })}
           </div>
 
           {uploading && <div className="text-sm text-gray-500">Uploading… {progress}%</div>}

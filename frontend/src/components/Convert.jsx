@@ -85,7 +85,7 @@ export default function Convert() {
       <Uploader
         resetCount={resetCount}         // ✅ pass resetCount
         setResetCount={setResetCount}   // ✅ pass setResetCount
-        actions={({ file, uploading }) => (
+        actions={({ file, uploading,transform,preview }) => (
           <div className="flex items-center gap-2 flex-wrap mt-3">
             <select
               value={format}

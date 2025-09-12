@@ -96,7 +96,9 @@ export default function CropPage() {
   return (
     <div className="space-y-6">
       <Uploader
-        actions={({ preview }) => (
+        resetCount={resetCount}
+        setResetCount={setResetCount}
+        actions={({ preview,transform,uploading,file }) => (
           <>
             {preview && (
               <div className="space-y-4 w-full">
