@@ -10,7 +10,10 @@ const Footer = () => {
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
             <a href="/" className="flex items-center">
-              <img src="/logo.png" className="h-8 mr-3" alt="Logo" />
+              <picture>
+                <source srcSet="/logo.svg" type="image/svg+xml" />
+                <img src="/logo.png" className="h-8 mr-3" alt="Logo" />
+              </picture>
               <span className="self-center text-2xl font-semibold whitespace-nowrap text-gray-900">
                 CCCImages
               </span>
@@ -36,7 +39,7 @@ const Footer = () => {
                   </Link>
 
                 </li>
-                
+
               </ul>
             </div>
 
