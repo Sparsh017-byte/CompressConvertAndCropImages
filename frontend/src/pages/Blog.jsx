@@ -11,26 +11,24 @@ function BlogCard({ blog }) {
     return text.length > length ? text.substring(0, length) + "..." : text;
   };
 
-  // use either blog.excerpt or first section, but truncate it
   const excerpt = truncate(
     blog.excerpt || (blog.sections && blog.sections[0]?.body) || "",
     140
   );
+
   return (
-    <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+    <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
       <Link to={`/blog/${blog.slug}`}>
-        <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
           {blog.title}
         </h1>
       </Link>
 
-      <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-        {excerpt}
-      </p>
+      <p className="mb-3 font-normal text-gray-700">{excerpt}</p>
 
       <Link
         to={`/blog/${blog.slug}`}
-        className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
       >
         Read more
         <svg
@@ -40,7 +38,13 @@ function BlogCard({ blog }) {
           fill="none"
           viewBox="0 0 14 10"
         >
-          <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M1 5h12m0 0L9 1m4 4L9 9"
+          />
         </svg>
       </Link>
     </div>
@@ -50,7 +54,6 @@ function BlogCard({ blog }) {
 function Pagination({ page, pages, onPageChange }) {
   if (!pages || pages <= 1) return null;
 
-  // build page list (simple version). You can improve with ellipsis if you want.
   const pageNumbers = Array.from({ length: pages }, (_, i) => i + 1);
 
   return (
@@ -59,11 +62,23 @@ function Pagination({ page, pages, onPageChange }) {
         <li>
           <button
             onClick={() => onPageChange(Math.max(1, page - 1))}
-            className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700"
             aria-label="Previous"
           >
-            <svg className="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-              <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 1 1 5l4 4" />
+            <svg
+              className="w-2.5 h-2.5 rtl:rotate-180"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 6 10"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M5 1 1 5l4 4"
+              />
             </svg>
           </button>
         </li>
@@ -74,8 +89,8 @@ function Pagination({ page, pages, onPageChange }) {
               onClick={() => onPageChange(p)}
               className={
                 p === page
-                  ? 'z-10 flex items-center justify-center px-3 h-8 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white'
-                  : 'flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
+                  ? 'z-10 flex items-center justify-center px-3 h-8 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700'
+                  : 'flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700'
               }
             >
               {p}
@@ -86,11 +101,23 @@ function Pagination({ page, pages, onPageChange }) {
         <li>
           <button
             onClick={() => onPageChange(Math.min(pages, page + 1))}
-            className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700"
             aria-label="Next"
           >
-            <svg className="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-              <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4" />
+            <svg
+              className="w-2.5 h-2.5 rtl:rotate-180"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 6 10"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="m1 9 4-4-4-4"
+              />
             </svg>
           </button>
         </li>
