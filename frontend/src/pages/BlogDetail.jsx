@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
+import ReactMarkdown from "react-markdown";
 
 const API = import.meta.env.VITE_API_URL || '';
 
@@ -41,7 +42,9 @@ export default function BlogDetail() {
       {blog.sections?.map((s, i) => (
         <section key={i} className="mt-6">
           {s.heading && <h2 className="text-xl font-semibold">{s.heading}</h2>}
-          <p className="whitespace-pre-wrap">{s.body}</p>
+          <ReactMarkdown className="prose dark:prose-invert">
+            {s.body}
+          </ReactMarkdown>
         </section>
       ))}
 
