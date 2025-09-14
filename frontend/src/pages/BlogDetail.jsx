@@ -38,7 +38,7 @@ export default function BlogDetail() {
   return (
     <article className="prose lg:prose-xl dark:prose-invert max-w-none">
       <h1 className="text-4xl sm:text-5xl font-bold mb-6">{blog.title}</h1>
-      {blog.excerpt && <p className="text-gray-600 dark:text-gray-300">{blog.excerpt}</p>}
+      {blog.excerpt && <p className="text-gray-600">{blog.excerpt}</p>}
 
       {blog.sections?.map((s, i) => (
         <section key={i} className="mt-6">
