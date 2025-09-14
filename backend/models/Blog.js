@@ -12,9 +12,10 @@ const BlogSchema = new mongoose.Schema({
   slug: { type: String, required: true, unique: true, index: true },
   excerpt: String,
   coverImage: String,
-  sections: [SectionSchema],
+  sections: [{ heading: String, body: String }],
   tags: [String],
-  author: { type: String, default: 'Admin' }
+  author: { type: String, default: 'Admin' },
+  publishedAt: { type: Date, default: Date.now }  // 👈 new field
 }, { timestamps: true });
 
 BlogSchema.pre('validate', async function (next) {
