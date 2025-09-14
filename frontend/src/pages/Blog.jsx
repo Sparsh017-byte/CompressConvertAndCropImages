@@ -6,7 +6,16 @@ import { Link, useSearchParams } from 'react-router-dom';
 const API = import.meta.env.VITE_API_URL || ''; // '' works if frontend served from same origin
 
 function BlogCard({ blog }) {
-  const excerpt = blog.excerpt || (blog.sections && blog.sections[0]?.body?.slice(0, 140)) || '';
+  const truncate = (text, length) => {
+    if (!text) return "";
+    return text.length > length ? text.substring(0, length) + "..." : text;
+  };
+
+  // use either blog.excerpt or first section, but truncate it
+  const excerpt = truncate(
+    blog.excerpt || (blog.sections && blog.sections[0]?.body) || "",
+    40
+  );
   return (
     <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
       <Link to={`/blog/${blog.slug}`}>
