@@ -103,7 +103,7 @@ export default function Home() {
         </div>
 
         {/* About Section */}
-        <div className="bg-gray-50 rounded-2xl shadow-md p-8">
+        <div className="bg-gray-50">
           <h2 className="text-3xl font-bold mb-4">About Us</h2>
           <p className="text-lg text-gray-700 mb-4">
             Welcome to <strong>CCC Images</strong> — your free online tool to
