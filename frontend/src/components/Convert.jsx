@@ -77,7 +77,7 @@ export default function Convert() {
       } else {
         setConvertedUrl(URL.createObjectURL(finalBlob));
       }
-    }, file.type);
+    }, `image/${format}`);
   }
 
   return (
@@ -85,7 +85,7 @@ export default function Convert() {
       <Uploader
         resetCount={resetCount}         // ✅ pass resetCount
         setResetCount={setResetCount}   // ✅ pass setResetCount
-        actions={({ file, uploading,transform,preview }) => (
+        actions={({ file, uploading, transform, preview }) => (
           <div className="flex items-center gap-2 flex-wrap mt-3">
             <select
               value={format}
@@ -121,18 +121,32 @@ export default function Convert() {
             href={convertedUrl}
             download={`converted.${format}`}
             onClick={() => {
-              if (window.gtag) {
-                window.gtag("event", "image_download", {
-                  event_category: "engagement",
-                  event_label: `converted.${format}`,
-                  value: 1,
-                });
+              if (window.Monetag && typeof window.Monetag.showInterstitial === "function") {
+                window.Monetag.showInterstitial();
               }
+
+              setTimeout(() => {
+                const link = document.createElement("a");
+                link.href = convertedUrl;
+                link.download = `converted.${format}`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                if (window.gtag) {
+                  window.gtag("event", "image_download", {
+                    event_category: "engagement",
+                    event_label: `converted.${format}`,
+                    value: 1,
+                  });
+                }
+              }, 1000);
             }}
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-4"
           >
             Download
           </a>
+
         </div>
       )}
 

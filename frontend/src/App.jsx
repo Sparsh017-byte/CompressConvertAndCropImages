@@ -15,22 +15,23 @@ import Blog from './pages/Blog.jsx';
 import BlogDetail from './pages/BlogDetail.jsx'
 
 
+
 function Nav() {
   const tabs = [
-    
+
     { to: '/compress', label: 'Compress' },
-    { to: '/convert',  label: 'Convert' },
-    { to: '/crop',     label: 'Crop' }
+    { to: '/convert', label: 'Convert' },
+    { to: '/crop', label: 'Crop' }
   ]
   const location = useLocation()
   return (
     <nav className="sticky top-0 z-50 bg-white border-b">
       <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
-        <div className="text-xl font-bold"><Link key = '/home' to = '/home'>CCCImages</Link></div>
+        <div className="text-xl font-bold"><Link key='/home' to='/home'>CCCImages</Link></div>
         <div className="flex gap-2">
           {tabs.map(t => (
             <Link key={t.to} to={t.to}
-              className={`btn ${location.pathname===t.to ? 'bg-gray-100' : ''}`}>
+              className={`btn ${location.pathname === t.to ? 'bg-gray-100' : ''}`}>
               {t.label}
             </Link>
           ))}
@@ -51,6 +52,16 @@ function HealthPill() {
 }
 
 export default function App() {
+  useEffect(() => {
+    const s = document.createElement("script");
+    s.dataset.zone = "9840400";
+    s.src = "https://groleegni.net/vignette.min.js";
+    document.body.appendChild(s);
+
+    return () => {
+      document.body.removeChild(s);
+    };
+  }, []);
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Nav />

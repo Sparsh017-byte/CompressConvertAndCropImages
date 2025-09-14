@@ -98,7 +98,7 @@ export default function CropPage() {
       <Uploader
         resetCount={resetCount}
         setResetCount={setResetCount}
-        actions={({ preview,transform,uploading,file }) => (
+        actions={({ preview, transform, uploading, file }) => (
           <>
             {preview && (
               <div className="space-y-4 w-full">
@@ -143,13 +143,26 @@ export default function CropPage() {
                       href={croppedUrl}
                       download="cropped.png"
                       onClick={() => {
-                        if (window.gtag) {
-                          window.gtag("event", "image_download", {
-                            event_category: "engagement",
-                            event_label: "cropped.png",
-                            value: 1,
-                          });
+                        if (window.Monetag && typeof window.Monetag.showInterstitial === "function") {
+                          window.Monetag.showInterstitial();
                         }
+
+                        setTimeout(() => {
+                          const link = document.createElement("a");
+                          link.href = convertedUrl;
+                          link.download = `converted.${format}`;
+                          document.body.appendChild(link);
+                          link.click();
+                          document.body.removeChild(link);
+
+                          if (window.gtag) {
+                            window.gtag("event", "image_download", {
+                              event_category: "engagement",
+                              event_label: `converted.${format}`,
+                              value: 1,
+                            });
+                          }
+                        }, 1000);
                       }}
                       className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-4"
                     >
