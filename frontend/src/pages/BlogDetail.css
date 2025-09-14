@@ -1,0 +1,10 @@
+/* BlogDetail.css */
+.blog-content a {
+  color: #2563eb; /* Blue color for links */
+  text-decoration: underline; /* Underline to show it's clickable */
+  transition: color 0.2s;
+}
+
+.blog-content a:hover {
+  color: #1d4ed8; /* Darker blue on hover */
+}
