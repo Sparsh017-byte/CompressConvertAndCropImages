@@ -1,12 +1,24 @@
 import { useState } from 'react';
 import Uploader from './Uploader';
 import Ads from './Ads';
+import { Helmet } from 'react-helmet';
 
 export default function Compress() {
   const [targetSize, setTargetSize] = useState(100);
 
   return (
     <div className="space-y-6">
+      <Helmet>
+        <title>Free Online Image Compressor - Compress Images to Any Size Instantly | CCCImages</title>
+        <meta
+          name="description"
+          content="Compress images online instantly with CCCImages. Reduce photo size to your desired KB without losing quality. Free, fast, and easy-to-use image compressor."
+        />
+        <meta property="og:title" content="Free Online Image Compressor - Compress Images to Any Size Instantly | CCCImages" />
+        <meta property="og:description" content="Compress images online instantly with CCCImages. Reduce photo size to your desired KB without losing quality. Free, fast, and easy-to-use image compressor." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://cccimages.online/compress" />
+      </Helmet>
       <Uploader
       actions={({ transform, uploading }) => (
         <div className="flex items-center gap-2">

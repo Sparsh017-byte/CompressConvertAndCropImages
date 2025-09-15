@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import Uploader from './Uploader';
 import Ads from './Ads';
+import { Helmet } from "react-helmet";
 
 // Reuse the compression function
 async function compressBlobToTargetSize(blob, targetKB) {
@@ -82,6 +83,25 @@ export default function Convert() {
 
   return (
     <div className="space-y-6">
+      <Helmet>
+        <title>
+          Free Online Image Converter - Convert Images to JPG, PNG, WebP & More | CCCImages
+        </title>
+        <meta
+          name="description"
+          content="Convert images online instantly with CCCImages. Change formats between JPG, PNG, WebP, AVIF, and more for free. Fast, easy-to-use, and no quality loss."
+        />
+        <meta
+          property="og:title"
+          content="Free Online Image Converter - Convert Images to JPG, PNG, WebP & More | CCCImages"
+        />
+        <meta
+          property="og:description"
+          content="Convert images online instantly with CCCImages. Change formats between JPG, PNG, WebP, AVIF, and more for free. Fast, easy-to-use, and no quality loss."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://cccimages.online/convert" />
+      </Helmet>
       <Uploader
         resetCount={resetCount}         // ✅ pass resetCount
         setResetCount={setResetCount}   // ✅ pass setResetCount

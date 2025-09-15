@@ -4,6 +4,7 @@ import Uploader from "./Uploader.jsx";
 import ReactCrop, { centerCrop, makeAspectCrop } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 import Ads from './Ads';
+import { Helmet } from "react-helmet";
 
 export async function compressBlobToTargetSize(blob, targetKB) {
   return new Promise((resolve) => {
@@ -95,6 +96,27 @@ export default function CropPage() {
 
   return (
     <div className="space-y-6">
+      <Helmet>
+        <title>
+          Free Online Image Cropper - Crop & Resize Photos Easily | CCCImages
+        </title>
+        <meta
+          name="description"
+          content="Crop images online instantly with CCCImages. Easily cut, resize, and adjust your photos to any aspect ratio. Free, fast, and easy-to-use online image crop tool."
+        />
+        <meta
+          property="og:title"
+          content="Free Online Image Cropper - Crop & Resize Photos Easily | CCCImages"
+        />
+        <meta
+          property="og:description"
+          content="Crop images online instantly with CCCImages. Easily cut, resize, and adjust your photos to any aspect ratio. Free, fast, and easy-to-use online image crop tool."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://cccimages.online/crop" />
+        <link rel="canonical" href="https://cccimages.online/crop" />
+      </Helmet>
+
       <Uploader
         resetCount={resetCount}
         setResetCount={setResetCount}
