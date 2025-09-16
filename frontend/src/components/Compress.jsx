@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Uploader from './Uploader';
 import Ads from './Ads';
 import { Helmet } from 'react-helmet';
-
+import CompressFAQ from "./CompressFAQ";
 export default function Compress() {
   const [targetSize, setTargetSize] = useState(100);
 
@@ -82,6 +82,8 @@ export default function Compress() {
           </li>
         </ul>
       </section>
+      {/* FAQ Section */}
+      <CompressFAQ />
 
     </div>
     
