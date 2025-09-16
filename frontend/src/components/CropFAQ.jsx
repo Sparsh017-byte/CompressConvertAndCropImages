@@ -7,9 +7,9 @@ const faqs = [
       "Image cropping is the process of trimming unwanted outer areas of an image. It allows you to focus on the most important part of the picture, adjust aspect ratios, or remove unnecessary background elements while keeping the overall image quality intact for better presentation.",
   },
   {
-    question: "📐 Can I crop to a specific aspect ratio?",
+    question: "📏 Can I crop images to custom dimensions?",
     answer:
-      "Yes! You can crop images to predefined aspect ratios such as 1:1 (square), 16:9 (widescreen), or 4:3 (standard). This ensures your image fits perfectly for social media, presentations, websites, or other platforms where specific aspect ratios are required for display.",
+      "Yes, you can crop images to any custom width and height. This allows full flexibility for banners, profile pictures, or specific design needs. Custom cropping ensures your images perfectly match the required resolution or fit into layouts where exact measurements are necessary.",
   },
   {
     question: "🖼️ Will cropping reduce my image quality?",
