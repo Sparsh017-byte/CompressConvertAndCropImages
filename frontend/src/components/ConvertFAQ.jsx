@@ -9,7 +9,7 @@ const faqs = [
   {
     question: "📂 Which image formats can I convert between?",
     answer:
-      "You can convert between popular formats such as JPG, PNG, WebP, BMP, and GIF. JPG is great for photos, PNG supports transparency, WebP is optimized for the web, BMP is uncompressed, and GIF supports simple animations. Each format has its unique use case and benefits.",
+      "You can convert between popular formats such as JPG ,JPEG , PNG, WebP and AVIF. JPG is great for photos, PNG supports transparency, WebP and AVIF is optimized for the web. Each format has its unique use case and benefits.",
   },
   {
     question: "⚡ Will converting an image affect its quality?",
