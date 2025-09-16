@@ -7,29 +7,30 @@ function CompressFAQ() {
     {
       question: "📷 What is image compression?",
       answer:
-        "Image compression reduces the file size of an image by removing unnecessary data while keeping the visual quality as high as possible.",
+        "Image compression is the process of reducing the file size of an image by removing or encoding redundant data. It helps save storage space, reduces bandwidth usage, and speeds up image loading on websites and apps while maintaining an acceptable level of visual quality for the viewer.",
     },
     {
       question: "⚡ Will compressing my image reduce its quality?",
       answer:
-        "With lossless compression, the quality remains unchanged. With lossy compression, there may be a slight reduction, but it’s usually not noticeable to the human eye.",
+        "Compressing an image may or may not affect its quality depending on the method used. Lossless compression preserves the original quality without any visible changes, while lossy compression slightly reduces details to achieve smaller file sizes. Typically, the quality loss is minimal and barely noticeable to most users.",
     },
     {
       question: "📂 Which image formats support compression?",
       answer:
-        "JPG, PNG, and WebP support compression. JPG is best for photos, PNG for graphics with transparency, and WebP for modern web optimization.",
+        "Common image formats like JPG, PNG, and WebP support compression. JPG works best for photographs, PNG is ideal for graphics with text or transparency, and WebP combines high compression efficiency with excellent quality, making it the preferred choice for modern websites aiming for speed and performance optimization.",
     },
     {
       question: "🌐 Why should I compress images for websites?",
       answer:
-        "Compressed images load faster, improve SEO rankings, reduce bandwidth usage, and provide a better user experience on all devices.",
+        "Compressing images is essential for websites because it reduces page load times, improves user experience, and saves server bandwidth. Faster websites also rank higher in search engines, which boosts SEO. Optimized images ensure that visitors on both desktop and mobile devices can access content quickly without interruptions.",
     },
     {
       question: "🔒 Is it safe to compress images online?",
       answer:
-        "Yes, as long as you use trusted platforms. CCCImages processes files securely and does not share your images with third parties.",
+        "Yes, compressing images online is safe if you use a reliable platform. Reputable tools like CCCImages ensure secure processing, temporary storage, and quick deletion of uploaded files. This protects your privacy while providing efficient compression. Always choose trusted services that guarantee data security and don’t share your files.",
     },
   ];
+
 
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -43,17 +44,15 @@ function CompressFAQ() {
             <button
               type="button"
               onClick={() => toggleFAQ(index)}
-              className={`flex items-center justify-between w-full p-5 font-medium text-left text-gray-700 border ${
-                index === faqs.length - 1 ? "border-gray-200" : "border-b-0 border-gray-200"
-              } focus:ring-4 focus:ring-gray-200 hover:bg-gray-100 gap-3 cursor-pointer`}
+              className={`flex items-center justify-between w-full p-5 font-medium text-left text-gray-700 border ${index === faqs.length - 1 ? "border-gray-200" : "border-b-0 border-gray-200"
+                } focus:ring-4 focus:ring-gray-200 hover:bg-gray-100 gap-3 cursor-pointer`}
               aria-expanded={openIndex === index}
               aria-controls={`accordion-open-body-${index}`}
             >
               <span className="flex items-center">{faq.question}</span>
               <svg
-                className={`w-3 h-3 shrink-0 transform transition-transform duration-200 ${
-                  openIndex === index ? "rotate-180" : ""
-                }`}
+                className={`w-3 h-3 shrink-0 transform transition-transform duration-200 ${openIndex === index ? "rotate-180" : ""
+                  }`}
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
