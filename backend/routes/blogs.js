@@ -16,6 +16,17 @@ router.get('/', async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+router.get('/recent', async (req, res) => {
+  try {
+    const blogs = await Blog.find()
+      .sort({ createdAt: -1 }) // newest first
+      .limit(3)
+      .lean();
+    res.json(blogs);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
 // Get single by slug
 router.get('/:slug', async (req, res) => {

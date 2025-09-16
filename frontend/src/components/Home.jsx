@@ -1,6 +1,7 @@
 // src/pages/Home.jsx
 import { Link } from "react-router-dom";
 import Ads from './Ads';
+import RecentBlogs from "./RecentBlogs";
 
 export default function Home() {
   return (
@@ -126,6 +127,9 @@ export default function Home() {
             </a>
           </p>
         </div>
+
+        {/* Recent Blogs */}
+        <RecentBlogs />
       </div>
     </div>
   );
