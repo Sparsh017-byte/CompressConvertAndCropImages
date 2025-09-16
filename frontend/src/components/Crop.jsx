@@ -5,6 +5,7 @@ import ReactCrop, { centerCrop, makeAspectCrop } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 import Ads from './Ads';
 import { Helmet } from "react-helmet";
+import CropFAQ from "./CropFAQ.jsx";
 
 export async function compressBlobToTargetSize(blob, targetKB) {
   return new Promise((resolve) => {
@@ -213,6 +214,7 @@ export default function CropPage() {
           <li>Improve overall composition and balance.</li>
         </ul>
       </div>
+      <CropFAQ/>
     </div>
   );
 }

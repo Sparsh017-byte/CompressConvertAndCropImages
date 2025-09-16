@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Uploader from './Uploader';
 import Ads from './Ads';
 import { Helmet } from "react-helmet";
+import ConvertFAQ from './ConvertFAQ';
 
 // Reuse the compression function
 async function compressBlobToTargetSize(blob, targetKB) {
@@ -187,6 +188,7 @@ export default function Convert() {
           quality and file size.
         </p>
       </section>
+      <ConvertFAQ/>
     </div>
   );
 }
