@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 router.get('/recent', async (req, res) => {
   try {
     const blogs = await Blog.find()
-      .sort({ publishedAt: -1 }) // newest first
+      .sort({ publishedAt: -1, createdAt: -1 }) // 👈 fallback sort
       .limit(3)
       .lean();
     res.json(blogs);
