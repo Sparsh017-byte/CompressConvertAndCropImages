@@ -96,21 +96,8 @@ const Footer = () => {
             . All Rights Reserved.
           </span>
 
-          {/* Social icons */}
-          <div className="flex justify-center space-x-5">
-            <a href="#" className="text-gray-500 hover:text-gray-900">
-              <i className="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" className="text-gray-500 hover:text-gray-900">
-              <i className="fab fa-twitter"></i>
-            </a>
-            <a href="#" className="text-gray-500 hover:text-gray-900">
-              <i className="fab fa-github"></i>
-            </a>
-            <a href="#" className="text-gray-500 hover:text-gray-900">
-              <i className="fab fa-dribbble"></i>
-            </a>
-          </div>
+          
+          
         </div>
       </div>
     </footer>
