@@ -52,16 +52,7 @@ function HealthPill() {
 }
 
 export default function App() {
-  useEffect(() => {
-    const s = document.createElement("script");
-    s.dataset.zone = "9840400";
-    s.src = "https://groleegni.net/vignette.min.js";
-    document.body.appendChild(s);
-
-    return () => {
-      document.body.removeChild(s);
-    };
-  }, []);
+  
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Nav />

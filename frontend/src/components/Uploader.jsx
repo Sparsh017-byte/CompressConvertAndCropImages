@@ -130,9 +130,7 @@ export default function Uploader({ actions }) {
                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-4"
                 onClick={() => {
                   // Show Monetag ad first
-                  if (window.Monetag && typeof window.Monetag.showInterstitial === "function") {
-                    window.Monetag.showInterstitial();
-                  }
+                  
 
                   // Trigger download after short delay (to let ad show)
                   setTimeout(() => {
@@ -151,7 +149,7 @@ export default function Uploader({ actions }) {
                         value: 1,
                       });
                     }
-                  }, 2000); // 2s delay (adjust as needed)
+                  }, 1000); // 1s delay (adjust as needed)
                 }}
               >
                 Download

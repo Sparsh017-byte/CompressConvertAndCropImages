@@ -166,9 +166,7 @@ export default function CropPage() {
                       href={croppedUrl}
                       download="cropped.png"
                       onClick={() => {
-                        if (window.Monetag && typeof window.Monetag.showInterstitial === "function") {
-                          window.Monetag.showInterstitial();
-                        }
+                        
 
                         setTimeout(() => {
                           const link = document.createElement("a");

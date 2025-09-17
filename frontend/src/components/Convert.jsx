@@ -142,9 +142,7 @@ export default function Convert() {
             href={convertedUrl}
             download={`converted.${format}`}
             onClick={() => {
-              if (window.Monetag && typeof window.Monetag.showInterstitial === "function") {
-                window.Monetag.showInterstitial();
-              }
+              
 
               setTimeout(() => {
                 const link = document.createElement("a");
