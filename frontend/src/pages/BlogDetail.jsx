@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from "react-markdown";
-import { Helmet } from "react-helmet-async";  // ✅ Make sure you import Helmet
+import { Helmet } from "react-helmet";  // ✅ Make sure you import Helmet
 import './BlogDetail.css';
 
 const API = import.meta.env.VITE_API_URL || '';
