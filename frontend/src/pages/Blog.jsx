@@ -182,8 +182,8 @@ export default function Blog() {
           content="Explore CCCImages blogs to learn about free image compression, conversion, and cropping tools online."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://cccimages.online/blog" />
-        <link rel="canonical" href="https://cccimages.online/blog" />
+        <meta property="og:url" content="https://cccimages.online/blogs" />
+        <link rel="canonical" href="https://cccimages.online/blogs" />
       </Helmet>
 
       <h2 className="text-3xl font-bold mb-6">Blog</h2>
