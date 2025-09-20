@@ -1,6 +1,7 @@
 // src/pages/Blog.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Helmet } from 'react-helmet'
 import { Link, useSearchParams } from 'react-router-dom';
 
 const API = import.meta.env.VITE_API_URL || ''; // '' works if frontend served from same origin
@@ -165,6 +166,26 @@ export default function Blog() {
 
   return (
     <div>
+      <Helmet>
+        <title>Blog | CCCImages</title>
+        <meta
+          name="description"
+          content="Read the latest blogs on CCCImages about free online image tools, image compression, conversion, and cropping."
+        />
+        <meta
+          name="keywords"
+          content="CCCImages blog, image tools, compress images, convert images, crop photos"
+        />
+        <meta property="og:title" content="Blog | CCCImages" />
+        <meta
+          property="og:description"
+          content="Explore CCCImages blogs to learn about free image compression, conversion, and cropping tools online."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://cccimages.online/blog" />
+        <link rel="canonical" href="https://cccimages.online/blog" />
+      </Helmet>
+
       <h2 className="text-3xl font-bold mb-6">Blog</h2>
 
       {loading ? (
