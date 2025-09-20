@@ -1,11 +1,38 @@
 // src/pages/Home.jsx
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import Ads from './Ads';
 import RecentBlogs from "./RecentBlogs";
 
 export default function Home() {
   return (
     <div className="w-full min-h-screen">
+      <Helmet>
+        <title>
+          Free Online Image Tools - Compress, Convert & Crop Photos Easily | CCCImages
+        </title>
+        <meta
+          name="description"
+          content="CCCImages offers free online tools to compress, convert, and crop images in seconds. Optimize photos for websites, blogs, and social media without losing quality. No signup required!"
+        />
+        <meta
+          name="keywords"
+          content="free image tools, compress images online, convert images, crop photos, JPG to PNG, PNG to WebP, AVIF converter, online image editor, CCCImages"
+        />
+        <meta
+          property="og:title"
+          content="Free Online Image Tools - Compress, Convert & Crop Photos Easily | CCCImages"
+        />
+        <meta
+          property="og:description"
+          content="Optimize your images online with CCCImages. Compress photos, convert between JPG, PNG, WebP, AVIF, and crop pictures instantly. 100% free and easy to use!"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://cccimages.online/" />
+        <link rel="canonical" href="https://cccimages.online/" />
+        
+        
+      </Helmet>
       {/* Header with Single Image */}
       <div className="relative w-full h-[50vh] sm:h-[70vh] md:h-[80vh] overflow-hidden">
         <picture>

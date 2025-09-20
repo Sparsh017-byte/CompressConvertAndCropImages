@@ -1,8 +1,28 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 
 const Privacy = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 py-10 text-gray-800 leading-relaxed">
+      <Helmet>
+        <title>Privacy Policy | CCCImages</title>
+        <meta
+          name="description"
+          content="Read the privacy policy of CCCImages. Learn how we collect, use, and protect your information when using our free image compression, conversion, and cropping tools."
+        />
+        <meta
+          name="keywords"
+          content="CCCImages privacy policy, data security, user rights, cookies, online image tools privacy"
+        />
+        <meta property="og:title" content="Privacy Policy | CCCImages" />
+        <meta
+          property="og:description"
+          content="Understand how CCCImages handles your privacy. We protect your data and never sell personal information. Learn about cookies, user rights, and third-party services."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://cccimages.online/privacy" />
+        <link rel="canonical" href="https://cccimages.online/privacy" />
+      </Helmet>
       <h1 className="text-3xl font-bold mb-6 text-center">Privacy Policy</h1>
 
       <section className="mb-8">

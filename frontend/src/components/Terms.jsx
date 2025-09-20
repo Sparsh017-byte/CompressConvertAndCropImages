@@ -1,9 +1,31 @@
 // src/components/Terms.jsx
 import React from "react";
+import { Helmet } from "react-helmet";
+
 
 const Terms = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 py-10 text-gray-800 leading-relaxed">
+      <Helmet>
+        <title>Terms and Conditions | CCCImages</title>
+        <meta
+          name="description"
+          content="Read the Terms and Conditions of CCCImages. Learn about user responsibilities, intellectual property rights, prohibited activities, and service limitations when using our free image tools."
+        />
+        <meta
+          name="keywords"
+          content="CCCImages terms and conditions, user responsibilities, intellectual property, prohibited activities, online image tools rules"
+        />
+        <meta property="og:title" content="Terms and Conditions | CCCImages" />
+        <meta
+          property="og:description"
+          content="Understand the Terms and Conditions of CCCImages. Learn your rights, responsibilities, and restrictions when using our free image compression, conversion, and cropping tools."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://cccimages.online/terms" />
+        <link rel="canonical" href="https://cccimages.online/terms" />
+      </Helmet>
+
       <h1 className="text-3xl font-bold mb-6 text-center">
         Terms and Conditions
       </h1>
