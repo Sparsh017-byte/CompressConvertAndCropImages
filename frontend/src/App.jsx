@@ -70,7 +70,7 @@ export default function App() {
           <Route path="/privacy-policy" element={<Privacy />} />
           <Route path="/blogs" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogDetail />} />
-          <Route path="*" element={<div>Not Found</div>} />
+          {/* <Route path="*" element={<div>Not Found</div>} /> */}
         </Routes>
       </main>
 
