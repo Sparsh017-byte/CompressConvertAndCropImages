@@ -276,9 +276,10 @@ app.post('/api/convert', upload.single('image'), async (req, res, next) => {
     next(err);
   }
 });
-app.use('/api/:path(*)', (req, res) => {
+app.use(/^\/api\//, (req, res) => {
   res.status(404).json({ error: 'API route not found' });
 });
+
 
 // ---- Error handler
 app.use((err, _req, res, _next) => {
