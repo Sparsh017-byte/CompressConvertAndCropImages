@@ -276,7 +276,9 @@ app.post('/api/convert', upload.single('image'), async (req, res, next) => {
     next(err);
   }
 });
-
+app.use('/api/*', (req, res) => {
+  res.status(404).json({ error: 'API route not found' });
+});
 
 // ---- Error handler
 app.use((err, _req, res, _next) => {
@@ -289,6 +291,8 @@ app.use((err, _req, res, _next) => {
   }
   return res.status(500).json({ error: 'Server error' });
 });
+
+
 
 // ---- Start server
 const MONGO_URI = process.env.MONGO_URI;
